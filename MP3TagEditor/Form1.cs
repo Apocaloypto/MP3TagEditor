@@ -17,9 +17,9 @@ namespace MP3TagEditor
          try
          {
             albumGeneral1.ApplyValues();
-            DialogContext.Validate();
+            DialogContext.Save();
          }
-         catch (ValidationException ex)
+         catch (Exception ex)
          {
             MessageBox.Show($"Error while saving the changes: {ex.Message}");
          }

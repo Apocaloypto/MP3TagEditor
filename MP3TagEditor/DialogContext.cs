@@ -70,7 +70,7 @@ namespace MP3TagEditor
          }
       }
 
-      public static void Validate()
+      private static void Validate()
       {
          if (string.IsNullOrEmpty(Artist))
          {
@@ -86,6 +86,11 @@ namespace MP3TagEditor
          {
             throw new ValidationException("Some tracks have the same title.");
          }
+      }
+
+      public static void Save()
+      {
+         Validate();
       }
    }
 }
