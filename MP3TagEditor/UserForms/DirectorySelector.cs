@@ -13,6 +13,7 @@
          if (fbd.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(fbd.SelectedPath))
          {
             DialogContext.CurrentDir = fbd.SelectedPath;
+            tbxDir.Text = DialogContext.CurrentDir;
          }
       }
    }
