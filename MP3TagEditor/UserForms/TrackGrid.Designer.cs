@@ -79,6 +79,7 @@
          this.colNewFilename.FillWeight = 99.49239F;
          this.colNewFilename.HeaderText = "New Filename";
          this.colNewFilename.Name = "colNewFilename";
+         this.colNewFilename.ReadOnly = true;
          // 
          // TrackGrid
          // 
