@@ -14,5 +14,11 @@
          tbxArtist.Text = DialogContext.Artist;
          tbxAlbum.Text = DialogContext.Album;
       }
+
+      public void ApplyValues()
+      {
+         DialogContext.Artist = tbxArtist.Text;
+         DialogContext.Album = tbxAlbum.Text;
+      }
    }
 }

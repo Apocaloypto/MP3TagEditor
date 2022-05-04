@@ -1,4 +1,6 @@
-﻿namespace MP3TagEditor
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MP3TagEditor
 {
    internal static partial class DialogContext
    {
@@ -65,6 +67,24 @@
          {
             Artist = null;
             Album = null;
+         }
+      }
+
+      public static void Validate()
+      {
+         if (string.IsNullOrEmpty(Artist))
+         {
+            throw new ValidationException($"{nameof(Artist)} must not be empty.");
+         }
+
+         if (string.IsNullOrEmpty(Album))
+         {
+            throw new ValidationException($"{nameof(Album)} must not be empty.");
+         }
+
+         if (Tracks != null && Tracks.Select(t => t.Trackname).GroupBy(n => n).Any(g => g.Count() > 1))
+         {
+            throw new ValidationException("Some tracks have the same title.");
          }
       }
    }
