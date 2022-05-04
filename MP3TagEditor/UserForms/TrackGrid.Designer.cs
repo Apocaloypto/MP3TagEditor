@@ -53,6 +53,7 @@
          this.gridSongs.RowTemplate.Height = 25;
          this.gridSongs.Size = new System.Drawing.Size(709, 275);
          this.gridSongs.TabIndex = 0;
+         this.gridSongs.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnCellEndEdit);
          // 
          // colNo
          // 
