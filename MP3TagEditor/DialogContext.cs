@@ -27,12 +27,6 @@ namespace MP3TagEditor
       public static string? Album { get; set; }
       public static IList<Track>? Tracks { get; set; }
 
-      private static Track CreateTrackFromFileInfo(int num, FileInfo info)
-      {
-         ID3Reader.RelevantID3Tags metaId3 = ID3Reader.ReadMetadata(info.FullName);
-         return new Track(num + 1, info.Name, metaId3.Title, metaId3.Artist, metaId3.Album);
-      }
-
       private static void FillTracklist()
       {
          try
@@ -42,7 +36,7 @@ namespace MP3TagEditor
                var di = new DirectoryInfo(_currentDir);
                Tracks = di.GetFiles()
                   .Where(file => Path.GetExtension(file.FullName).ToUpper() == ".MP3")
-                  .Select((fi, index) => CreateTrackFromFileInfo(index, fi))
+                  .Select((fi, index) => new Track(index, fi))
                   .OrderByAlphaNumeric(t => t.Trackname, true)
                   .ToList();
             }
@@ -91,6 +85,14 @@ namespace MP3TagEditor
       public static void Save()
       {
          Validate();
+
+         if (Tracks != null)
+         {
+            foreach (var track in Tracks)
+            {
+
+            }
+         }
       }
    }
 }

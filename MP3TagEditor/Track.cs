@@ -9,13 +9,15 @@
       public string Album { get; set; }
       public string NewFilename => Trackname + ".mp3";
 
-      public Track(int no, string oldFilename, string trackname, string artist, string album)
+      public Track(int no, FileInfo info)
       {
-         No = no;
-         OldFilename = oldFilename;
-         Trackname = trackname;
-         Artist = artist;
-         Album = album;
+         ID3Reader.RelevantID3Tags metaId3 = ID3Reader.ReadMetadata(info.FullName);
+         
+         No = no + 1;
+         OldFilename = info.Name;
+         Trackname = metaId3.Title;
+         Artist = metaId3.Artist;
+         Album = metaId3.Album;
       }
    }
 }
