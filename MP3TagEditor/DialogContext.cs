@@ -90,7 +90,7 @@ namespace MP3TagEditor
          {
             foreach (var track in Tracks)
             {
-
+               track.Save();
             }
          }
       }

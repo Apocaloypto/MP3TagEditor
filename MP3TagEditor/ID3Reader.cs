@@ -23,5 +23,17 @@
             return new RelevantID3Tags(f.Tag.Title, f.Tag.Album, f.Tag.Performers.FirstOrDefault() ?? string.Empty);
          }
       }
+
+      public static void SaveMetadata(string filename, RelevantID3Tags tags)
+      {
+         using (TagLib.File f = TagLib.File.Create(filename))
+         {
+            f.Tag.Album = tags.Album;
+            f.Tag.Title = tags.Title;
+            f.Tag.Performers = new string[] { tags.Artist };
+
+            f.Save();
+         }
+      }
    }
 }

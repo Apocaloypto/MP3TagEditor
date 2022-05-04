@@ -22,5 +22,11 @@
          Album = metaId3.Album;
          _directory = info.DirectoryName!;
       }
+
+      public void Save()
+      {
+         ID3Reader.SaveMetadata(Path.Combine(_directory, OldFilename), new ID3Reader.RelevantID3Tags(Trackname, Album, Artist));
+         File.Move(Path.Combine(_directory, OldFilename), Path.Combine(_directory, NewFilename));
+      }
    }
 }
