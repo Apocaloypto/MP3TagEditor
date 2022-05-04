@@ -1,23 +1,7 @@
 ﻿namespace MP3TagEditor
 {
-   internal static class DialogContext
+   internal static partial class DialogContext
    {
-      public class Track
-      {
-         public int No { get; }
-         public string OldFilename { get; }
-         public string Trackname { get; set; }
-         public string NewFilename { get; set; }
-
-         public Track(int no, string oldFilename, string trackname, string newFilename)
-         {
-            No = no;
-            OldFilename = oldFilename;
-            Trackname = trackname;
-            NewFilename = newFilename;
-         }
-      }
-
       private static string? _currentDir;
       public static string? CurrentDir
       {
@@ -28,10 +12,8 @@
             {
                _currentDir = value;
 
-               if (!string.IsNullOrEmpty(_currentDir))
-               {
-                  FillTracklist();
-               }
+               FillTracklist();
+               InitArtistAlbum();
 
                CurrentDirChanged?.Invoke(_currentDir);
             }
@@ -45,23 +27,44 @@
 
       private static Track CreateTrackFromFileInfo(int num, FileInfo info)
       {
-         string titleId3 = ID3Reader.ReadTitlename(info.FullName);
-         return new Track(num, info.Name, titleId3, titleId3 + info.Extension);
+         ID3Reader.RelevantID3Tags metaId3 = ID3Reader.ReadMetadata(info.FullName);
+         return new Track(num, info.Name, metaId3.Title, metaId3.Title + info.Extension, metaId3.Artist, metaId3.Album);
       }
 
       private static void FillTracklist()
       {
          try
          {
-            var di = new DirectoryInfo(_currentDir!);
-            Tracks = di.GetFiles()
-               .Where(file => Path.GetExtension(file.FullName).ToUpper() == ".MP3")
-               .Select((fi, index) => CreateTrackFromFileInfo(index, fi))
-               .OrderBy(t => t.Trackname)
-               .ToList();
+            if (!string.IsNullOrEmpty(_currentDir))
+            {
+               var di = new DirectoryInfo(_currentDir);
+               Tracks = di.GetFiles()
+                  .Where(file => Path.GetExtension(file.FullName).ToUpper() == ".MP3")
+                  .Select((fi, index) => CreateTrackFromFileInfo(index, fi))
+                  .OrderByAlphaNumeric(t => t.Trackname, true)
+                  .ToList();
+            }
+            else
+            {
+               Tracks = null;
+            }
          }
          catch
          {
+         }
+      }
+
+      private static void InitArtistAlbum()
+      {
+         if (Tracks != null && Tracks.Count > 0 && !string.IsNullOrEmpty(CurrentDir))
+         {
+            Artist = Tracks[0].Artist;
+            Album = Tracks[0].Album;
+         }
+         else
+         {
+            Artist = null;
+            Album = null;
          }
       }
    }

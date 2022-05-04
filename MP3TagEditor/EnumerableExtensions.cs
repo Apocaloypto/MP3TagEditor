@@ -4,7 +4,7 @@ namespace MP3TagEditor
 {
    internal static class EnumerableExtensions
    {
-      private static IOrderedEnumerable<T> OrderByAlphaNumeric<T>(this IEnumerable<T> source, Func<T, string> selector, bool asc)
+      public static IOrderedEnumerable<T> OrderByAlphaNumeric<T>(this IEnumerable<T> source, Func<T, string> selector, bool asc)
       {
          int max = source
              .SelectMany(i => Regex.Matches(selector(i), @"\d+").Cast<Match>().Select(m => (int?)m.Value.Length))
