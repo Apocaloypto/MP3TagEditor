@@ -28,7 +28,7 @@
       private static Track CreateTrackFromFileInfo(int num, FileInfo info)
       {
          ID3Reader.RelevantID3Tags metaId3 = ID3Reader.ReadMetadata(info.FullName);
-         return new Track(num, info.Name, metaId3.Title, metaId3.Title + info.Extension, metaId3.Artist, metaId3.Album);
+         return new Track(num + 1, info.Name, metaId3.Title, metaId3.Title + info.Extension, metaId3.Artist, metaId3.Album);
       }
 
       private static void FillTracklist()
