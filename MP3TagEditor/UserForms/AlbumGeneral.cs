@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace MP3TagEditor.UserForms
+﻿namespace MP3TagEditor.UserForms
 {
    public partial class AlbumGeneral : UserControl
    {
       public AlbumGeneral()
       {
          InitializeComponent();
+
+         DialogContext.CurrentDirChanged += DialogContext_CurrentDirChanged;
+      }
+
+      private void DialogContext_CurrentDirChanged()
+      {
+         tbxArtist.Text = DialogContext.Artist;
+         tbxAlbum.Text = DialogContext.Album;
       }
    }
 }

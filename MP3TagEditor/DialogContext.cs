@@ -15,12 +15,12 @@
                FillTracklist();
                InitArtistAlbum();
 
-               CurrentDirChanged?.Invoke(_currentDir);
+               CurrentDirChanged?.Invoke();
             }
          }
       }
 
-      public static event Action<string?>? CurrentDirChanged;
+      public static event Action? CurrentDirChanged;
       public static string? Artist { get; set; }
       public static string? Album { get; set; }
       public static IList<Track>? Tracks { get; set; }
