@@ -35,6 +35,7 @@
          this.albumGeneral1 = new MP3TagEditor.UserForms.AlbumGeneral();
          this.groupBox3 = new System.Windows.Forms.GroupBox();
          this.trackGrid1 = new MP3TagEditor.UserForms.TrackGrid();
+         this.okCancel1 = new MP3TagEditor.UserForms.OkCancel();
          this.tableLayoutPanel1.SuspendLayout();
          this.groupBox1.SuspendLayout();
          this.groupBox2.SuspendLayout();
@@ -51,12 +52,14 @@
          this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
          this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
          this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 2);
+         this.tableLayoutPanel1.Controls.Add(this.okCancel1, 0, 3);
          this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
          this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-         this.tableLayoutPanel1.RowCount = 3;
+         this.tableLayoutPanel1.RowCount = 4;
          this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
          this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
          this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+         this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
          this.tableLayoutPanel1.Size = new System.Drawing.Size(776, 426);
          this.tableLayoutPanel1.TabIndex = 0;
          // 
@@ -104,7 +107,7 @@
          this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
          this.groupBox3.Location = new System.Drawing.Point(3, 113);
          this.groupBox3.Name = "groupBox3";
-         this.groupBox3.Size = new System.Drawing.Size(770, 310);
+         this.groupBox3.Size = new System.Drawing.Size(770, 275);
          this.groupBox3.TabIndex = 2;
          this.groupBox3.TabStop = false;
          this.groupBox3.Text = "Songs";
@@ -114,8 +117,16 @@
          this.trackGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
          this.trackGrid1.Location = new System.Drawing.Point(3, 19);
          this.trackGrid1.Name = "trackGrid1";
-         this.trackGrid1.Size = new System.Drawing.Size(764, 288);
+         this.trackGrid1.Size = new System.Drawing.Size(764, 253);
          this.trackGrid1.TabIndex = 0;
+         // 
+         // okCancel1
+         // 
+         this.okCancel1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.okCancel1.Location = new System.Drawing.Point(3, 394);
+         this.okCancel1.Name = "okCancel1";
+         this.okCancel1.Size = new System.Drawing.Size(770, 29);
+         this.okCancel1.TabIndex = 3;
          // 
          // Form1
          // 
@@ -142,5 +153,6 @@
       private UserForms.DirectorySelector directorySelector1;
       private UserForms.AlbumGeneral albumGeneral1;
       private UserForms.TrackGrid trackGrid1;
+      private UserForms.OkCancel okCancel1;
    }
 }
